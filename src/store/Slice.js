@@ -127,11 +127,24 @@ export const gameSlice = createSlice({
 
     });
 
+  },
+
+
+  resetGame : (state, action) => {
+
+    state.turn = true,
+    state.winner = ""
+
+    state.data.map((item) => {
+      item.token = "",
+      item.chosen = false
+
+    })
   }
 
   }
 })
 
-export const {togglePlayer, declareWinner} = gameSlice.actions
+export const {togglePlayer, declareWinner, resetGame} = gameSlice.actions
 export default gameSlice.reducer
 

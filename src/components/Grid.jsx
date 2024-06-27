@@ -1,19 +1,27 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { togglePlayer, declareWinner } from '../store/Slice.js';
+import { togglePlayer, declareWinner, resetGame } from '../store/Slice.js';
 
 function Grid({id, token}) {
 
   // const data = useSelector((state) => state.data)
+  
+  const winner = useSelector((state) => state.winner)
 
   const dispatch = useDispatch()
 
   const handlePlayers = () => {
  
     dispatch(togglePlayer({id}))
+
     dispatch(declareWinner({id}))
 
   }
+
+
+  useEffect(() => {
+    dispatch(resetGame())
+  }, [winner])
 
   return (
 
